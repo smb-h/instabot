@@ -2,10 +2,13 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.firefox.options import Options
 import time
 from bs4 import BeautifulSoup
 import requests
 import json
+import logging.config
+import sys
 
 
 # InstaBot
@@ -13,13 +16,19 @@ class InstaBot:
     # initial
     def __init__(self, target_username):
         # initiate browser
-        self.driver = webdriver.Firefox()
+        opts = Options()
+        opts.headless = True
+        assert opts.headless
+        self.driver = webdriver.Firefox(options = opts)
         self.driver.get("https://www.instagram.com")
         time.sleep(5)
 
         self.username = "smb__h"
         self.password = "3!M>Z*(VhZkB"
         self.target_username = target_username
+
+        # logger
+        self.logger = InstaBot.get_logger(level = logging.DEBUG, dest = "", verbose = 0)
 
     # authenticate
     def authenticate(self, username = None, password = None):
@@ -168,10 +177,6 @@ class InstaBot:
         driver.get(url)
         time.sleep(5)
            
-        # if not post_media:
-        #     post_media = [(driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[2]/div/div/div").get_attribute('innerHTML').split("src")[-1])[2:-2].replace("amp;", "")]
-        # print(post_media)
-
 
         # post media
         post_media_type = driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[2]/div")
@@ -308,6 +313,7 @@ class InstaBot:
     def close_driver(self):
         self.driver.close()
 
+    # store data
     def store_data(self, user_public_info = None, posts_data = None):
         print(user_public_info)
         print(posts_data)
@@ -317,6 +323,28 @@ class InstaBot:
         }
         with open('data/{}.json'.format(self.target_username), 'w', encoding='utf8') as outfile:
             json.dump(json_data, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
+
+    # logger
+    @staticmethod
+    def get_logger(level = logging.DEBUG, dest='', verbose = 0):
+        """Returns a logger."""
+        logger = logging.getLogger(__name__)
+
+        dest +=  '/' if (dest !=  '') and dest[-1] != '/' else ''
+        fh = logging.FileHandler(dest + 'instagram.log', 'w')
+        fh.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+        fh.setLevel(level)
+        logger.addHandler(fh)
+
+        sh = logging.StreamHandler(sys.stdout)
+        sh.setFormatter(logging.Formatter('%(levelname)s: %(message)s'))
+        sh_lvls = [logging.ERROR, logging.WARNING, logging.INFO]
+        sh.setLevel(sh_lvls[verbose])
+        logger.addHandler(sh)
+
+        logger.setLevel(level)
+
+        return logger
 
 # search_field = driver.find_element_by_tag_name("body").find_element_by_xpath("//div/section/nav/div[2]/div/div/div[2]/input")
 # search_field.clear()
@@ -328,8 +356,11 @@ class InstaBot:
 
 # Main
 def main():
+    # time elapsed
+    start = time.time()
+
     # stinerisnes, manon.lantie_, ma_jid2670, clip_shad_1
-    bot = InstaBot(target_username = "anali_0018")
+    bot = InstaBot(target_username = "smbhop")
     bot.authenticate()
     bot.inject_jquery()
     public_info = bot.get_user_public_info()
@@ -339,6 +370,11 @@ def main():
 
 
     bot.close_driver()
+
+    # logger
+    # warning, info, error
+    # time elapsed
+    bot.logger.info('time elapsed : ' + str(time.time() - start))
 
 
 
