@@ -1,1 +1,9 @@
-2020-09-26 09:12:45,160 - __main__ - INFO - time elapsed : 35.384493589401245
+2020-09-27 13:48:15,443 - __main__ - INFO - initial browser...
+2020-09-27 13:48:18,548 - __main__ - INFO - navigate to https://www.instagram.com
+2020-09-27 13:48:26,806 - __main__ - INFO - login as smb__h
+2020-09-27 13:48:39,460 - __main__ - INFO - inject jquery
+2020-09-27 13:48:39,460 - __main__ - INFO - get public info
+2020-09-27 13:48:39,460 - __main__ - INFO - navigate to https://www.instagram.com/me93525
+2020-09-27 13:48:51,963 - __main__ - INFO - inject jquery
+2020-09-27 13:48:51,963 - __main__ - INFO - gather user posts
+2020-09-27 13:48:57,110 - __main__ - INFO - load 11/11 posts

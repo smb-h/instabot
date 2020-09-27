@@ -24,8 +24,8 @@ class InstaBot:
         opts.headless = True
         assert opts.headless
         self.logger.info("initial browser...")
-        self.driver = webdriver.Firefox(options = opts)
-        # self.driver = webdriver.Firefox()
+        # self.driver = webdriver.Firefox(options = opts)
+        self.driver = webdriver.Firefox()
         self.navigate_webdriver("https://www.instagram.com")
 
         self.username = "smb__h"
@@ -183,44 +183,105 @@ class InstaBot:
         # get post urls
         post_urls = []
 
-        try:
-            # load all posts
-            max_posts_section_height = 0
-            retry_scroll = 0
-            while True:
-                # extract
-                posts = driver.find_elements_by_css_selector(".v1Nh3.kIKUG")
-                for post in posts:
-                    post_url = post.find_element_by_tag_name("a").get_attribute("href") 
+        # load all posts
+        driver.execute_script("""
+            var y = $(window).scrollTop(); 
+            $(window).scrollTop(y+350);
+        """)
+        time.sleep(2)
 
-                    if post_url not in post_urls:
-                        post_urls.append(post_url)
+        max_posts_section_height = 0
+        retry_scroll = 0
+        while True:
+            # extract
+            posts = driver.find_elements_by_css_selector(".v1Nh3.kIKUG")
+            for post in posts:
+                post_url = post.find_element_by_tag_name("a").get_attribute("href")
+                post_media = post.find_element_by_tag_name("a").find_element_by_tag_name("img").get_attribute("src")
+                post_views = None
+                post_comments = None
+                post_likes = None
+
+                print(post_url)
+                print(post_media)
+
+                # hover element
+                try:
+                    hover = ActionChains(driver).move_to_element(post)
+                    hover.perform()
+                    time.sleep(2)
+                except MoveTargetOutOfBoundsException:
+                    driver.execute_script("""
+                        var y = $(window).scrollTop(); 
+                        $(window).scrollTop(y+350);
+                    """)
+                    time.sleep(2)
+                # check either in div 2 or 3
+                # skip mini icon on top of post
+                try:
+                    tmp = post.find_element_by_tag_name("a").find_element_by_xpath("//div[2]/ul/li/span")
+                    is_iconed = False
+                    skip_icon = "2"
+                except NoSuchElementException:
+                    is_iconed = True
+                    skip_icon = "3"
+                # gather like comment view data from hover
+                first_item = post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li/span")
+                second_item = post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span")
+                # first item
+                if "coreSpriteHeartSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li/span[2]").get_attribute("class"):
+                    post_likes = first_item.text
+                elif "coreSpriteSpeechBubbleSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li/span[2]").get_attribute("class"):
+                    post_comments = first_item.text
+                elif "coreSpritePlayIconSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li/span[2]").get_attribute("class"):
+                    post_views = first_item.text
+                # second item
+                if "coreSpriteHeartSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
+                    post_likes = second_item.text
+                elif "coreSpriteSpeechBubbleSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
+                    post_comments = second_item.text
+                elif "coreSpritePlayIconSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
+                    post_views = second_item.text
+                
+                print(post_views)
+                print(post_likes)
+                print(post_comments)
+                print("===============================")
 
 
-                # scroll
-                driver.execute_script("$('html, body').animate({ scrollTop: $('html, body').prop('scrollHeight')}, 350);")
-                time.sleep(5)
+                if post_url not in post_urls:
+                    # post_urls.append(post_url)
+                    post_urls.append({
+                            "post_url": post_url,
+                        })
 
-                self.logger.info("load {0}/{1} posts".format(len(post_urls), self.posts_count))
+            # scroll
+            # driver.execute_script("$('html, body').animate({ scrollTop: $('html, body').prop('scrollHeight')}, 350);")
+            driver.execute_script("""
+                var y = $(window).scrollTop(); 
+                $(window).scrollTop(y+350);
+            """)
+            time.sleep(5)
 
-                posts_section_style = driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div[3]/article/div/div").get_attribute("style")
-                new_posts_section_height = int((posts_section_style.split(" ")[-1]).replace("px", ""). replace(";", ""))
-                if new_posts_section_height > max_posts_section_height:
-                    max_posts_section_height = new_posts_section_height
-                    retry_scroll = 0
-                elif retry_scroll >= 3:
-                    break
-                else:
-                    retry_scroll += 1
-        except NoSuchElementException:
-            pass
+            self.logger.info("load {0}/{1} posts".format(len(post_urls), self.posts_count))
+
+            posts_section_style = driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div[3]/article/div/div").get_attribute("style")
+            new_posts_section_height = int((posts_section_style.split(" ")[-1]).replace("px", ""). replace(";", ""))
+            if new_posts_section_height > max_posts_section_height:
+                max_posts_section_height = new_posts_section_height
+                retry_scroll = 0
+            elif retry_scroll >= 3:
+                break
+            else:
+                retry_scroll += 1
+
 
         all_posts = []
         # get post detail
-        for url in post_urls:
-            self.logger.info("gather post data {0}/{1}".format((post_urls.index(url) + 1), len(post_urls)))
-            post_data = self.get_post_detail(url)
-            all_posts.append(post_data)
+        # for url in post_urls:
+        #     self.logger.info("gather post data {0}/{1}".format((post_urls.index(url) + 1), len(post_urls)))
+        #     post_data = self.get_post_detail(url)
+        #     all_posts.append(post_data)
 
         return all_posts
 
@@ -312,43 +373,51 @@ class InstaBot:
                 comments[cm_by_user] = cm_content
         except NoSuchElementException:
             pass
-        # likes and views
-        views = 0
-        if is_video:
-            views_button = driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[3]/section[2]/div/span")
-            views = int(views_button.text.replace(",", "").replace(" views", ""))
-            driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[3]/section[2]/div/span").click()
-            likes = int(driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[3]/section[2]/div/div/div[4]/span").text.replace(",", ""))
-        elif is_picture:
-            likes = []
-            try:
-                driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[3]/section[2]/div/div/button").click()
-                time.sleep(3)
-                # load all likes
-                likes_section_height = 356
-                max_likes_section_height = 356
-                self.inject_jquery()
-                while True:
-                    # extract
-                    like_div_sections = driver.find_element_by_tag_name("body").find_elements_by_xpath("//div[4]/div/div/div[2]/div/div/div")
-                    for div in like_div_sections:
-                        tmp = div.text.split("\n")[0]
-                        if tmp not in likes:
-                            likes.append(tmp)
-                    # scroll
-                    driver.execute_script("$('.Igw0E.IwRSH.eGOV_.vwCYk.i0EQd div').animate({ scrollTop: $('.Igw0E.IwRSH.eGOV_.vwCYk.i0EQd div').prop('scrollHeight')}, 100);")
-                    time.sleep(3)
 
-                    likes_section_style = driver.find_element_by_tag_name("body").find_element_by_xpath("//div[4]/div/div/div[2]/div/div").get_attribute("style")
-                    new_likes_section_height = int((likes_section_style.split(" ")[-1]).replace("px", ""). replace(";", "")) + 356
-                    if new_likes_section_height > max_likes_section_height:
-                        max_likes_section_height = new_likes_section_height
-                        # gather new data
-                    else:
-                        break
-            except NoSuchElementException:
-                pass
+
         
+
+        # likes
+        likes = []
+        try:
+            driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[3]/section[2]/div/div/button").click()
+            time.sleep(3)
+            # load all likes
+            likes_section_height = 356
+            max_likes_section_height = 356
+            self.inject_jquery()
+            while True:
+                # extract
+                like_div_sections = driver.find_element_by_tag_name("body").find_elements_by_xpath("//div[4]/div/div/div[2]/div/div/div")
+                for div in like_div_sections:
+                    tmp = div.text.split("\n")[0]
+                    if tmp not in likes:
+                        likes.append(tmp)
+                # scroll
+                driver.execute_script("$('.Igw0E.IwRSH.eGOV_.vwCYk.i0EQd div').animate({ scrollTop: $('.Igw0E.IwRSH.eGOV_.vwCYk.i0EQd div').prop('scrollHeight')}, 100);")
+                time.sleep(3)
+
+                likes_section_style = driver.find_element_by_tag_name("body").find_element_by_xpath("//div[4]/div/div/div[2]/div/div").get_attribute("style")
+                new_likes_section_height = int((likes_section_style.split(" ")[-1]).replace("px", ""). replace(";", "")) + 356
+                if new_likes_section_height > max_likes_section_height:
+                    max_likes_section_height = new_likes_section_height
+                    # gather new data
+                else:
+                    break
+        except NoSuchElementException:
+            pass
+        
+        # likes or views
+        # likes = 0
+        views = 0
+        # try:
+        #     likes = int(driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[3]/section[2]/div/div/button/span").text.replace(",", ""))
+        # except NoSuchElementException:
+        #     views_button = driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[3]/section[2]/div/span")
+        #     views = int(views_button.text.replace(",", "").replace(" views", ""))
+        #     driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[3]/section[2]/div/span").click()
+        #     likes = int(driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[3]/section[2]/div/div/div[4]/span").text.replace(",", ""))
+
         return({
             "url": url,
             "post_media": post_media,
@@ -357,53 +426,6 @@ class InstaBot:
             "views": views,
             "comments": comments
         })
-
-    # get highlight stories
-    def get_stories_highlights(self):
-        self.logger.info("get highlight stories")
-        driver = self.driver
-        self.navigate_webdriver("https://www.instagram.com" + "/" + self.target_username)
-
-        stories = []
-        # get list of highlight items
-        try:
-            highlight_section = driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/div/div/div/ul")
-            highlights = highlight_section.find_elements_by_css_selector("li.Ckrof")
-            highlights[0].click()
-            time.sleep(1)
-            while True:
-                try:
-                    src = driver.find_element_by_tag_name("body").find_element_by_xpath("//div/section/div/div/section/div[2]/div/div/div/img").get_attribute("src")
-                    if src not in stories:
-                        stories.append(src)
-                    time.sleep(2)
-                except NoSuchElementException:
-                    break
-        except NoSuchElementException:
-            return stories
-        return stories
-
-    # get stories
-    def get_stories(self):
-        self.logger.info("get stories")
-        driver = self.driver
-        self.navigate_webdriver("https://www.instagram.com" + "/" + self.target_username)
-
-        # click on profile photo
-        driver.find_element_by_tag_name("main").find_element_by_xpath("//div/header/div/div").click()
-        time.sleep(3)
-        media = []
-        while True:
-            try:
-                driver.find_element_by_tag_name("body").find_element_by_xpath("//div/section/div/div/section/div[2]/div/div/div")
-            except NoSuchElementException:
-                break
-
-            src = driver.find_element_by_tag_name("body").find_element_by_xpath("//div/section/div/div/section/div[2]/div/div/div/img").get_attribute("src")
-            if src not in media:
-                media.append(src)
-            time.sleep(4)
-        return media
 
     # scroll page
     def scroll(self):
@@ -431,12 +453,10 @@ class InstaBot:
         self.driver.close()
 
     # store data
-    def store_data(self, user_public_info = None, posts_data = None, stories = None, stories_highlights = None):
+    def store_data(self, user_public_info = None, posts_data = None):
         self.logger.info("store data...")
         json_data = {
             "user_public_info": user_public_info,
-            "stories": stories,
-            "stories_highlights": stories_highlights,
             "posts": posts_data,
         }
         with open('data/{}.json'.format(self.target_username), 'w', encoding='utf8') as outfile:
@@ -478,16 +498,14 @@ def main():
     # time elapsed
     start = time.time()
 
-    # stinerisnes, manon.lantie_, ma_jid2670, clip_shad_1, me93525, baran_nikrah, t.e.x.t.gram
-    bot = InstaBot(target_username = "me93525")
+    # stinerisnes, manon.lantie_, ma_jid2670, clip_shad_1
+    bot = InstaBot(target_username = "baran_nikrah")
     bot.authenticate()
     bot.inject_jquery()
     public_info = bot.get_user_public_info()
     bot.inject_jquery()
     posts_data = bot.get_posts()
-    stories = bot.get_stories()
-    stories_highlights = bot.get_stories_highlights()
-    bot.store_data(user_public_info = public_info, stories = stories, stories_highlights = stories_highlights, posts_data = posts_data)
+    bot.store_data(public_info, posts_data)
 
 
     bot.close_driver()
