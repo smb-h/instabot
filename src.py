@@ -10,6 +10,7 @@ import requests
 import json
 import logging.config
 import sys
+import os
 
 
 # InstaBot
@@ -439,6 +440,8 @@ class InstaBot:
             "stories_highlights": stories_highlights,
             "posts": posts_data,
         }
+        if not os.path.exists('data'):
+            os.makedirs('data')
         with open('data/{}.json'.format(self.target_username), 'w', encoding='utf8') as outfile:
             json.dump(json_data, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
 
