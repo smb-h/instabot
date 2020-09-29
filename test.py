@@ -16,10 +16,10 @@ import sys
 driver = webdriver.Firefox()
 driver.get("https://www.instagram.com")
 
-username = "smb__h"
-password = "3!M>Z*(VhZkB"
+username = ""
+password = ""
 
-with open('jquery-3.5.1.min.js', 'r') as jquery_js: 
+with open('static/jquery-3.5.1.min.js', 'r') as jquery_js: 
     jquery = jquery_js.read()
     driver.execute_script(jquery)
 

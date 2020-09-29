@@ -1,0 +1,14 @@
+1600585403520	geckodriver	INFO	Listening on 127.0.0.1:38695
+1600585403525	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileF9DP4w"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1600585405342	Marionette	INFO	Listening on port 44439
+1600585405434	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.jsm: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 689))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 343))
+1600585434209	Marionette	INFO	Stopped listening on port 44439
+1600585488733	geckodriver	INFO	Listening on 127.0.0.1:44381
+1600585488738	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileH0Sfsj"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1600585490615	Marionette	INFO	Listening on port 45679
+1600585490644	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600585503904	Marionette	INFO	Stopped listening on port 45679
