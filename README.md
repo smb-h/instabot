@@ -1,6 +1,6 @@
 # InstaBot
 
-InstaBot is a Python library for crawling Instagram
+InstaBot is a Python library for crawling Instagram using selenium
 
 
 ## About

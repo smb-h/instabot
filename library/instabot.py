@@ -25,8 +25,8 @@ class InstaBot:
         opts.headless = True
         assert opts.headless
         self.logger.info("initial browser...")
-        # self.driver = webdriver.Firefox(options = opts)
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Firefox(options = opts)
+        # self.driver = webdriver.Firefox()
         self.navigate_webdriver("https://www.instagram.com")
 
         # read username, password from file
