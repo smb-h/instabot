@@ -98,6 +98,7 @@ class InstaBot:
         self.logger.info("get public info")
         driver = self.driver
         self.navigate_webdriver("https://www.instagram.com" + "/" + self.target_username)
+        self.inject_jquery()
 
         # logged user info
         # driver.find_element_by_tag_name("main").find_element_by_xpath("//section/div[3]/div/div/div/a").click()
@@ -180,6 +181,7 @@ class InstaBot:
     def get_posts(self):
         driver = self.driver
         self.logger.info("gather user posts")
+        self.inject_jquery()
 
         # get post urls
         post_urls = []
@@ -228,7 +230,8 @@ class InstaBot:
     # get post detail
     def get_post_detail(self, url):
         driver = self.driver
-        self.navigate_webdriver(url)           
+        self.navigate_webdriver(url)
+        self.inject_jquery()
 
         # post media
         post_media_type = driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[2]/div")
@@ -406,6 +409,64 @@ class InstaBot:
             time.sleep(4)
         return media
 
+    # get posts by tag
+    def get_posts_by_tag(self, tag, maximum):
+        self.logger.info(f"get posts by tag #{tag}")
+        driver = self.driver
+        self.navigate_webdriver("https://www.instagram.com/explore/tags/" + tag)
+        self.inject_jquery()
+
+        # get post urls
+        post_urls = []
+
+        try:
+            # load all posts
+            max_posts_section_height = 0
+            retry_scroll = 0
+            while True:
+                # extract
+                posts = driver.find_elements_by_css_selector(".v1Nh3.kIKUG")
+                for post in posts:
+                    post_url = post.find_element_by_tag_name("a").get_attribute("href") 
+
+                    # break when it reaches maximum depth
+                    if len(post_urls) >= maximum:
+                        break
+
+                    if post_url not in post_urls:
+                        post_urls.append(post_url)
+
+                # break when it reaches maximum depth
+                if len(post_urls) >= maximum:
+                    break
+
+                # scroll
+                driver.execute_script("$('html, body').animate({ scrollTop: $('html, body').prop('scrollHeight')}, 350);")
+                time.sleep(5)
+
+                self.logger.info("load {0}/{1} posts".format(len(post_urls), maximum))
+
+                posts_section_style = driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div[3]/article/div/div").get_attribute("style")
+                new_posts_section_height = int((posts_section_style.split(" ")[-1]).replace("px", ""). replace(";", ""))
+                if new_posts_section_height > max_posts_section_height:
+                    max_posts_section_height = new_posts_section_height
+                    retry_scroll = 0
+                elif retry_scroll >= 3:
+                    break
+                else:
+                    retry_scroll += 1
+        except NoSuchElementException:
+            pass
+
+        all_posts = []
+        # get post detail
+        for url in post_urls:
+            self.logger.info("gather post data {0}/{1}".format((post_urls.index(url) + 1), len(post_urls)))
+            post_data = self.get_post_detail(url)
+            all_posts.append(post_data)
+
+        return all_posts
+
     # scroll page
     def scroll(self):
         driver = self.driver
@@ -432,18 +493,23 @@ class InstaBot:
         self.driver.close()
 
     # store data
-    def store_data(self, user_public_info = None, posts_data = None, stories = None, stories_highlights = None):
+    def store_data(self, user_public_info = None, posts_data = None, stories = None, stories_highlights = None, posts_by_tag_data = None, tag = None):
         self.logger.info("store data...")
         json_data = {
             "user_public_info": user_public_info,
             "stories": stories,
             "stories_highlights": stories_highlights,
             "posts": posts_data,
+            "posts_by_tag_data": posts_by_tag_data,
         }
         if not os.path.exists('data'):
             os.makedirs('data')
-        with open('data/{}.json'.format(self.target_username), 'w', encoding='utf8') as outfile:
-            json.dump(json_data, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
+        if tag:
+            with open('data/{}.json'.format(tag), 'w', encoding='utf8') as outfile:
+                json.dump(json_data, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
+        else :
+            with open('data/{}.json'.format(self.target_username), 'w', encoding='utf8') as outfile:
+                json.dump(json_data, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
 
     # logger
     @staticmethod
@@ -468,12 +534,6 @@ class InstaBot:
 
         return logger
 
-# search_field = driver.find_element_by_tag_name("body").find_element_by_xpath("//div/section/nav/div[2]/div/div/div[2]/input")
-# search_field.clear()
-# search_field.send_keys(search_param)
-# time.sleep(5)
-# driver.find_element_by_tag_name("body").find_element_by_xpath("//div/section/nav/div[2]/div/div/div[2]/input")
-# time.sleep(3)
 
 
 # Main
@@ -484,15 +544,18 @@ def main():
     # stinerisnes, manon.lantie_, ma_jid2670, clip_shad_1, me93525, baran_nikrah, t.e.x.t.gram
     bot = InstaBot(target_username = "me93525")
     bot.authenticate()
-    bot.inject_jquery()
-    public_info = bot.get_user_public_info()
-    bot.inject_jquery()
-    posts_data = bot.get_posts()
-    stories = bot.get_stories()
-    stories_highlights = bot.get_stories_highlights()
-    bot.store_data(user_public_info = public_info, stories = stories, stories_highlights = stories_highlights, posts_data = posts_data)
+    # public_info = bot.get_user_public_info()
+    # posts_data = bot.get_posts()
+    # stories = bot.get_stories()
+    # stories_highlights = bot.get_stories_highlights()
+    # bot.store_data(user_public_info = public_info, stories = stories, stories_highlights = stories_highlights, posts_data = posts_data)
 
+    # tag
+    tag = "ایران"
+    posts_by_tag_data = bot.get_posts_by_tag(tag, maximum = 2)
+    bot.store_data(posts_by_tag_data = posts_by_tag_data, tag = tag)
 
+    # close driver
     bot.close_driver()
 
     # logger

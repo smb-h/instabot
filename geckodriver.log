@@ -10936,3 +10936,214 @@ console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Err
 1601202687407	Marionette	INFO	Listening on port 42255
 1601202687443	Marionette	WARN	TLS certificate errors will be ignored for this session
 JavaScript error: , line 0: uncaught exception: undefined
+JavaScript error: resource://gre/actors/PictureInPictureChild.jsm, line 143: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/PictureInPictureChild.jsm, line 143: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/PictureInPictureChild.jsm, line 143: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+1601203345961	Marionette	INFO	Stopped listening on port 42255
+1601204832463	geckodriver	INFO	Listening on 127.0.0.1:42363
+1601204833477	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileucmqiS"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601204835748	Marionette	INFO	Listening on port 33163
+1601204835785	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: uncaught exception: undefined
+SourceActor threw an exception: [Exception... "Component returned failure code: 0x80470002 (NS_BASE_STREAM_CLOSED) [nsIInputStream.available]"  nsresult: "0x80470002 (NS_BASE_STREAM_CLOSED)"  location: "JS frame :: resource://devtools/shared/DevToolsUtils.js :: onResponse :: line 560"  data: no]
+Stack: onResponse@resource://devtools/shared/DevToolsUtils.js:560:34
+onStopRequest@resource://gre/modules/NetUtil.jsm:128:18
+Line: 560, column: 0
+console.error: ({})
+JavaScript error: resource://devtools/shared/DevToolsUtils.js, line 560: NS_BASE_STREAM_CLOSED: Component returned failure code: 0x80470002 (NS_BASE_STREAM_CLOSED) [nsIInputStream.available]
+JavaScript warning: https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js, line 1190: Script terminated by timeout at:
+pe</u.getQueries@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:1190:17297
+pe</u.invalidateQueries/<@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:1190:17830
+H@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:1190:4772
+pe</u.invalidateQueries@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:1190:17794
+qe/<@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:1190:19523
+qe@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:1190:19494
+
+JavaScript warning: https://www.instagram.com/static/bundles/es6/ConsumerLibCommons.js/c22a5d655e8d.js, line 85: Script terminated by timeout at:
+s@https://www.instagram.com/static/bundles/es6/ConsumerLibCommons.js/c22a5d655e8d.js:85:406
+b.post@https://www.instagram.com/static/bundles/es6/ConsumerLibCommons.js/c22a5d655e8d.js:85:3232
+t@https://www.instagram.com/static/bundles/es6/ConsumerLibCommons.js/c22a5d655e8d.js:90:66
+c@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:181:231
+n@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:181:133
+t@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:182:135
+e.initTimeSpentBitArrayLogger/<@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:181:733
+inform/<@https://www.instagram.com/static/bundles/es6/ConsumerLibCommons.js/c22a5d655e8d.js:86:142
+inform@https://www.instagram.com/static/bundles/es6/ConsumerLibCommons.js/c22a5d655e8d.js:86:131
+h@https://www.instagram.com/static/bundles/es6/ConsumerLibCommons.js/c22a5d655e8d.js:85:2108
+v@https://www.instagram.com/static/bundles/es6/ConsumerUICommons.js/e3304344e804.js:31:187
+
+JavaScript warning: https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js, line 1190: Script terminated by timeout at:
+l@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:1190:795
+qe@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:1190:19481
+
+[Child 39955, MediaDecoderStateMachine #1] WARNING: Decoder=7f55f31ef000 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /build/firefox-KNJqXb/firefox-80.0.1+build1/dom/media/MediaDecoderStateMachine.cpp, line 3470
+[Child 39955, MediaDecoderStateMachine #1] WARNING: Decoder=7f55f31ef000 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /build/firefox-KNJqXb/firefox-80.0.1+build1/dom/media/MediaDecoderStateMachine.cpp, line 3470
+JavaScript warning: https://www.instagram.com/static/bundles/es6/Vendor.js/c911f5848b78.js, line 11: Script terminated by timeout at:
+Ur@https://www.instagram.com/static/bundles/es6/Vendor.js/c911f5848b78.js:11:61274
+Ir@https://www.instagram.com/static/bundles/es6/Vendor.js/c911f5848b78.js:11:61040
+Le@https://www.instagram.com/static/bundles/es6/Vendor.js/c911f5848b78.js:11:15240
+
+JavaScript warning: https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js, line 1190: Script terminated by timeout at:
+l@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:1190:795
+qe@https://www.instagram.com/static/bundles/es6/Consumer.js/bc46798d544c.js:1190:19481
+
+console.error: "Error while calling actor 'pagestyle's method 'getLayout'" "node is null"
+console.error: "getLayout@resource://devtools/server/actors/styles.js:1012:5\nhandler@resource://devtools/shared/protocol/Actor.js:162:37\nonPacket@resource://devtools/server/devtools-server-connection.js:379:58\nreceiveMessage@resource://devtools/shared/transport/child-transport.js:66:16\n"
+console.error: (new Error("Protocol error (TypeError): node is null from: server0.conn1.child2/pagestyle26 (resource://devtools/server/actors/styles.js:1012:5)", "resource://devtools/shared/protocol/Front.js", 323))
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1601208303008	geckodriver	INFO	Listening on 127.0.0.1:34071
+1601208304022	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGlQRRE"
+*** You are running in headless mode.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601208305794	Marionette	INFO	Listening on port 41749
+1601208305860	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: uncaught exception: undefined
+1601208409639	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:245:13
+TimedPromise@chrome://marionette/content/sync.js:230:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:416:10
+webdriverClickElement@chrome://marionette/content/interaction.js:182:31
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1601208664944	geckodriver	INFO	Listening on 127.0.0.1:43579
+1601208665955	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile5KV2Kv"
+*** You are running in headless mode.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601208667756	Marionette	INFO	Listening on port 39627
+1601208667761	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: uncaught exception: undefined
+console.error: Region.jsm: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 689))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 343))
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1601208845095	geckodriver	INFO	Listening on 127.0.0.1:56951
+1601208846101	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileiCgN5t"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601208849124	Marionette	INFO	Listening on port 33777
+1601208849211	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: uncaught exception: undefined
+1601208955813	geckodriver	INFO	Listening on 127.0.0.1:57355
+1601208956827	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileIRA2cE"
+1601208957453	Marionette	INFO	Stopped listening on port 33777
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601208958740	Marionette	INFO	Listening on port 45889
+1601208958836	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: uncaught exception: undefined
+1601209151814	Marionette	INFO	Stopped listening on port 45889
+1601209153119	geckodriver	INFO	Listening on 127.0.0.1:48451
+1601209154132	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilewVf5qd"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601209156272	Marionette	INFO	Listening on port 39755
+1601209156342	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: uncaught exception: undefined
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1601209347644	geckodriver	INFO	Listening on 127.0.0.1:60579
+1601209348657	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileFziRtv"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601209350772	Marionette	INFO	Listening on port 32845
+1601209350899	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: uncaught exception: undefined
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1601209581264	geckodriver	INFO	Listening on 127.0.0.1:34635
+1601209582279	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile90GBFV"
+*** You are running in headless mode.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601209585022	Marionette	INFO	Listening on port 44357
+1601209585116	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: uncaught exception: undefined
+JavaScript error: resource://gre/actors/PictureInPictureChild.jsm, line 143: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+1601210744345	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:245:13
+TimedPromise@chrome://marionette/content/sync.js:230:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:416:10
+webdriverClickElement@chrome://marionette/content/interaction.js:182:31
+1601210785022	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:245:13
+TimedPromise@chrome://marionette/content/sync.js:230:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:416:10
+webdriverClickElement@chrome://marionette/content/interaction.js:182:31
+1601210796524	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:245:13
+TimedPromise@chrome://marionette/content/sync.js:230:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:416:10
+webdriverClickElement@chrome://marionette/content/interaction.js:182:31
+1601210800537	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:245:13
+TimedPromise@chrome://marionette/content/sync.js:230:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:416:10
+webdriverClickElement@chrome://marionette/content/interaction.js:182:31
+1601210845020	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:245:13
+TimedPromise@chrome://marionette/content/sync.js:230:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:416:10
+webdriverClickElement@chrome://marionette/content/interaction.js:182:31
+1601210849227	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:245:13
+TimedPromise@chrome://marionette/content/sync.js:230:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:416:10
+webdriverClickElement@chrome://marionette/content/interaction.js:182:31
+1601210853357	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:245:13
+TimedPromise@chrome://marionette/content/sync.js:230:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:416:10
+webdriverClickElement@chrome://marionette/content/interaction.js:182:31
+1601210931033	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:245:13
+TimedPromise@chrome://marionette/content/sync.js:230:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:416:10
+webdriverClickElement@chrome://marionette/content/interaction.js:182:31
+1601210936051	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:245:13
+TimedPromise@chrome://marionette/content/sync.js:230:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:416:10
+webdriverClickElement@chrome://marionette/content/interaction.js:182:31
+Exiting due to channel error.
+Exiting due to channel error.
+1601352333156	geckodriver	INFO	Listening on 127.0.0.1:48641
+1601352334167	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileIRG72H"
+*** You are running in headless mode.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601352336551	Marionette	INFO	Listening on port 35189
+1601352336803	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1601352555388	geckodriver	INFO	Listening on 127.0.0.1:35033
+1601352556397	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilePUDyxq"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601352558358	Marionette	INFO	Listening on port 43385
+1601352558902	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1601352799204	geckodriver	INFO	Listening on 127.0.0.1:58209
+1601352800217	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileSj2nHa"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601352802238	Marionette	INFO	Listening on port 46509
+1601352802327	Marionette	WARN	TLS certificate errors will be ignored for this session
+1601354199894	Marionette	INFO	Stopped listening on port 46509
+1601354364491	geckodriver	INFO	Listening on 127.0.0.1:38749
+1601354365505	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilegH6rJ4"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601354367463	Marionette	INFO	Listening on port 36283
+1601354367517	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1601354385076	geckodriver	INFO	Listening on 127.0.0.1:38161
+1601354386091	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilenGJsNM"
+*** You are running in headless mode.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601354388143	Marionette	INFO	Listening on port 32951
+1601354388787	Marionette	WARN	TLS certificate errors will be ignored for this session
+1601354520259	Marionette	INFO	Stopped listening on port 32951

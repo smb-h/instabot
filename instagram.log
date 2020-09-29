@@ -1,3 +1,17 @@
-2020-09-27 14:01:24,519 - __main__ - INFO - initial browser...
-2020-09-27 14:01:27,472 - __main__ - INFO - navigate to https://www.instagram.com
-2020-09-27 14:01:35,916 - __main__ - INFO - login as smb__h
+2020-09-29 08:09:45,074 - __main__ - INFO - initial browser...
+2020-09-29 08:09:48,830 - __main__ - INFO - navigate to https://www.instagram.com
+2020-09-29 08:09:57,673 - __main__ - INFO - login as smb__h
+2020-09-29 08:10:11,562 - __main__ - INFO - get posts by tag #ایران
+2020-09-29 08:10:11,562 - __main__ - INFO - navigate to https://www.instagram.com/explore/tags/ایران
+2020-09-29 08:10:19,226 - __main__ - INFO - inject jquery
+2020-09-29 08:10:19,291 - __main__ - INFO - gather post data 1/2
+2020-09-29 08:10:19,291 - __main__ - INFO - navigate to https://www.instagram.com/p/CFs3XfJpvWJ/
+2020-09-29 08:10:26,389 - __main__ - INFO - inject jquery
+2020-09-29 08:10:36,575 - __main__ - INFO - inject jquery
+2020-09-29 08:11:14,854 - __main__ - INFO - gather post data 2/2
+2020-09-29 08:11:14,854 - __main__ - INFO - navigate to https://www.instagram.com/p/CFsfvu2l8NU/
+2020-09-29 08:11:21,215 - __main__ - INFO - inject jquery
+2020-09-29 08:11:25,233 - __main__ - INFO - inject jquery
+2020-09-29 08:12:00,256 - __main__ - INFO - store data...
+2020-09-29 08:12:00,256 - __main__ - INFO - closing driver!
+2020-09-29 08:12:00,671 - __main__ - INFO - time elapsed : 135.59767389297485
