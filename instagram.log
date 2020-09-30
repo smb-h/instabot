@@ -1,40 +1,11 @@
-2020-09-29 09:41:09,786 - library.instabot - INFO - initial browser...
-2020-09-29 09:41:12,664 - library.instabot - INFO - navigate to https://www.instagram.com
-2020-09-29 09:41:21,954 - library.instabot - INFO - login as smb__h
-2020-09-29 09:41:36,794 - library.instabot - INFO - get public info
-2020-09-29 09:41:36,794 - library.instabot - INFO - navigate to https://www.instagram.com/manon.lantie_
-2020-09-29 09:41:45,171 - library.instabot - INFO - inject jquery
-2020-09-29 09:41:50,274 - library.instabot - INFO - gather user posts
-2020-09-29 09:41:50,330 - library.instabot - INFO - inject jquery
-2020-09-29 09:41:55,422 - library.instabot - INFO - load 6/6 posts
-2020-09-29 09:41:55,444 - library.instabot - INFO - gather post data 1/6
-2020-09-29 09:41:55,444 - library.instabot - INFO - navigate to https://www.instagram.com/p/CFF7w25gHTT/
-2020-09-29 09:42:02,379 - library.instabot - INFO - inject jquery
-2020-09-29 09:42:10,385 - library.instabot - INFO - inject jquery
-2020-09-29 09:42:45,366 - library.instabot - INFO - gather post data 2/6
-2020-09-29 09:42:45,366 - library.instabot - INFO - navigate to https://www.instagram.com/p/CB6WH2zAUmW/
-2020-09-29 09:42:52,391 - library.instabot - INFO - inject jquery
-2020-09-29 09:43:03,801 - library.instabot - INFO - inject jquery
-2020-09-29 09:43:46,288 - library.instabot - INFO - gather post data 3/6
-2020-09-29 09:43:46,288 - library.instabot - INFO - navigate to https://www.instagram.com/p/CAv6QJUgekL/
-2020-09-29 09:43:52,989 - library.instabot - INFO - inject jquery
-2020-09-29 09:44:01,268 - library.instabot - INFO - inject jquery
-2020-09-29 09:44:32,647 - library.instabot - INFO - gather post data 4/6
-2020-09-29 09:44:32,647 - library.instabot - INFO - navigate to https://www.instagram.com/p/B_NhJvagG9i/
-2020-09-29 09:44:40,696 - library.instabot - INFO - inject jquery
-2020-09-29 09:44:49,736 - library.instabot - INFO - inject jquery
-2020-09-29 09:45:24,656 - library.instabot - INFO - gather post data 5/6
-2020-09-29 09:45:24,656 - library.instabot - INFO - navigate to https://www.instagram.com/p/B9-GuNugBQ9/
-2020-09-29 09:45:32,990 - library.instabot - INFO - inject jquery
-2020-09-29 09:45:42,096 - library.instabot - INFO - inject jquery
-2020-09-29 09:46:23,698 - library.instabot - INFO - gather post data 6/6
-2020-09-29 09:46:23,699 - library.instabot - INFO - navigate to https://www.instagram.com/p/B9zmL4OgQ6C/
-2020-09-29 09:46:30,954 - library.instabot - INFO - inject jquery
-2020-09-29 09:46:36,191 - library.instabot - INFO - inject jquery
-2020-09-29 09:47:14,860 - library.instabot - INFO - get stories
-2020-09-29 09:47:14,861 - library.instabot - INFO - navigate to https://www.instagram.com/manon.lantie_
-2020-09-29 09:47:25,002 - library.instabot - INFO - get highlight stories
-2020-09-29 09:47:25,002 - library.instabot - INFO - navigate to https://www.instagram.com/manon.lantie_
-2020-09-29 09:47:31,608 - library.instabot - INFO - store data...
-2020-09-29 09:47:31,609 - library.instabot - INFO - closing driver!
-2020-09-29 09:47:32,000 - library.instabot - INFO - time elapsed : 382.21746802330017
+2020-09-30 10:42:40,968 - library.instabot - INFO - initial browser...
+2020-09-30 10:43:01,508 - library.instabot - INFO - navigate to https://www.instagram.com
+2020-09-30 10:43:21,187 - library.instabot - INFO - login as smb__h
+2020-09-30 10:43:26,198 - library.instabot - WARNING - there is no save info alert!
+2020-09-30 10:43:26,213 - library.instabot - WARNING - there is no allow notification alert!
+2020-09-30 10:43:26,213 - library.instabot - INFO - get posts by tag #طبیعت
+2020-09-30 10:43:26,213 - library.instabot - INFO - navigate to https://www.instagram.com/explore/tags/طبیعت
+2020-09-30 10:43:36,717 - library.instabot - INFO - inject jquery
+2020-09-30 10:43:36,781 - library.instabot - INFO - gather post data 1/2
+2020-09-30 10:43:36,781 - library.instabot - INFO - navigate to https://www.instagram.com/p/CFutxjhA9_S/
+2020-09-30 10:43:46,491 - library.instabot - INFO - inject jquery

@@ -11,7 +11,6 @@ import json
 import logging.config
 import sys
 import os
-from .proxy import ConnectionManager
 
 
 # InstaBot
@@ -26,24 +25,8 @@ class InstaBot:
         opts.headless = True
         assert opts.headless
         self.logger.info("initial browser...")
-        # proxy config
-        cm = ConnectionManager()
-        cm.renew_connection()
-        profile = webdriver.FirefoxProfile()
-        profile.set_preference("network.proxy.type", 1)
-        profile.set_preference("network.proxy.socks", '127.0.0.1')
-        profile.set_preference("network.proxy.socks_port", 9050)
-        profile.set_preference("network.proxy.socks_remote_dns", False)
-        profile.update_preferences()
-
-        # proxy
-        # self.driver = webdriver.Firefox(firefox_profile = profile)
-        # headless
         self.driver = webdriver.Firefox(options = opts)
-        # normal
         # self.driver = webdriver.Firefox()
-        # full options
-        # self.driver = webdriver.Firefox(firefox_profile = profile, options = opts)
         self.navigate_webdriver("https://www.instagram.com")
 
         # read username, password from file
@@ -59,7 +42,7 @@ class InstaBot:
         driver = self.driver
         self.logger.info("navigate to " + path)
         driver.get(path)
-        time.sleep(6)
+        time.sleep(5)
 
     # refresh webdriver
     def refresh_webdriver(self, path):
