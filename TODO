@@ -19,7 +19,7 @@ t.e.x.t.gram
 
 
 python src.py --username baran_nikrah --posts --max-posts 20 --likes --max-likes 100 --comments --max-comments 100 --stories
-python src.py --tag طبیعت --posts --max-posts 1 --likes --max-likes 20 --comments --max-comments 12
+python src.py --tag nature --posts --max-posts 20 --likes --max-likes 100 --comments --max-comments 100
 
 
 

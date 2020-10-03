@@ -266,7 +266,10 @@ class InstaBot:
                         skip_icon = "3"
                     # gather like comment view data from hover
                     first_item = post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li/span")
-                    second_item = post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span")
+                    try:
+                        second_item = post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span")
+                    except NoSuchElementException:
+                        second_item = None
                     # first item
                     if "coreSpriteHeartSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li/span[2]").get_attribute("class"):
                         post_likes_count = first_item.text.replace(",", "")
@@ -294,31 +297,32 @@ class InstaBot:
                             post_views_count = int(float(post_views_count) * 1000)
 
                     # second item
-                    if "coreSpriteHeartSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
-                        post_likes_count = second_item.text.replace(",", "")
-                        post_likes_count = first_item.text.replace(",", "")
-                        if "m" in post_likes_count:
-                            post_likes_count = post_likes_count.replace("m", "")
-                            post_likes_count = int(float(post_likes_count) * 1000000)
-                        elif "k" in post_likes_count:
-                            post_likes_count = post_likes_count.replace("k", "")
-                            post_likes_count = int(float(post_likes_count) * 1000)
-                    elif "coreSpriteSpeechBubbleSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
-                        post_comments_count = second_item.text.replace(",", "")
-                        if "m" in post_comments_count:
-                            post_comments_count = post_comments_count.replace("m", "")
-                            post_comments_count = int(float(post_comments_count) * 1000000)
-                        elif "k" in post_comments_count:
-                            post_comments_count = post_comments_count.replace("k", "")
-                            post_comments_count = int(float(post_comments_count) * 1000)
-                    elif "coreSpritePlayIconSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
-                        post_views_count = second_item.text.replace(",", "")
-                        if "m" in post_views_count:
-                            post_views_count = post_views_count.replace("m", "")
-                            post_views_count = int(float(post_views_count) * 1000000)
-                        elif "k" in post_views_count:
-                            post_views_count = post_views_count.replace("k", "")
-                            post_views_count = int(float(post_views_count) * 1000)
+                    if second_item:
+                        if "coreSpriteHeartSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
+                            post_likes_count = second_item.text.replace(",", "")
+                            post_likes_count = first_item.text.replace(",", "")
+                            if "m" in post_likes_count:
+                                post_likes_count = post_likes_count.replace("m", "")
+                                post_likes_count = int(float(post_likes_count) * 1000000)
+                            elif "k" in post_likes_count:
+                                post_likes_count = post_likes_count.replace("k", "")
+                                post_likes_count = int(float(post_likes_count) * 1000)
+                        elif "coreSpriteSpeechBubbleSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
+                            post_comments_count = second_item.text.replace(",", "")
+                            if "m" in post_comments_count:
+                                post_comments_count = post_comments_count.replace("m", "")
+                                post_comments_count = int(float(post_comments_count) * 1000000)
+                            elif "k" in post_comments_count:
+                                post_comments_count = post_comments_count.replace("k", "")
+                                post_comments_count = int(float(post_comments_count) * 1000)
+                        elif "coreSpritePlayIconSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
+                            post_views_count = second_item.text.replace(",", "")
+                            if "m" in post_views_count:
+                                post_views_count = post_views_count.replace("m", "")
+                                post_views_count = int(float(post_views_count) * 1000000)
+                            elif "k" in post_views_count:
+                                post_views_count = post_views_count.replace("k", "")
+                                post_views_count = int(float(post_views_count) * 1000)
 
                     if post_url not in posts_data.keys():
                         posts_data[post_url] = {
@@ -468,7 +472,8 @@ class InstaBot:
 
         if is_video:
             views_button = driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[3]/section[2]/div/span")
-            views = int(views_button.text.replace(",", "").replace(" views", ""))
+            views = views_button.text.replace(",", "").replace(" views", "")
+            views = int(views) if views else 0
             views_button.click()
             likes_count = int(driver.find_element_by_tag_name("main").find_element_by_xpath("//div/div/article/div[3]/section[2]/div/div/div[4]/span").text.replace(",", ""))
         elif is_picture:
@@ -626,7 +631,10 @@ class InstaBot:
                         skip_icon = "3"
                     # gather like comment view data from hover
                     first_item = post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li/span")
-                    second_item = post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span")
+                    try:
+                        second_item = post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span")
+                    except NoSuchElementException:
+                        second_item = None
                     # first item
                     if "coreSpriteHeartSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li/span[2]").get_attribute("class"):
                         post_likes_count = first_item.text.replace(",", "")
@@ -654,31 +662,32 @@ class InstaBot:
                             post_views_count = int(float(post_views_count) * 1000)
 
                     # second item
-                    if "coreSpriteHeartSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
-                        post_likes_count = second_item.text.replace(",", "")
-                        post_likes_count = first_item.text.replace(",", "")
-                        if "m" in post_likes_count:
-                            post_likes_count = post_likes_count.replace("m", "")
-                            post_likes_count = int(float(post_likes_count) * 1000000)
-                        elif "k" in post_likes_count:
-                            post_likes_count = post_likes_count.replace("k", "")
-                            post_likes_count = int(float(post_likes_count) * 1000)
-                    elif "coreSpriteSpeechBubbleSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
-                        post_comments_count = second_item.text.replace(",", "")
-                        if "m" in post_comments_count:
-                            post_comments_count = post_comments_count.replace("m", "")
-                            post_comments_count = int(float(post_comments_count) * 1000000)
-                        elif "k" in post_comments_count:
-                            post_comments_count = post_comments_count.replace("k", "")
-                            post_comments_count = int(float(post_comments_count) * 1000)
-                    elif "coreSpritePlayIconSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
-                        post_views_count = second_item.text.replace(",", "")
-                        if "m" in post_views_count:
-                            post_views_count = post_views_count.replace("m", "")
-                            post_views_count = int(float(post_views_count) * 1000000)
-                        elif "k" in post_views_count:
-                            post_views_count = post_views_count.replace("k", "")
-                            post_views_count = int(float(post_views_count) * 1000)
+                    if second_item:
+                        if "coreSpriteHeartSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
+                            post_likes_count = second_item.text.replace(",", "")
+                            post_likes_count = first_item.text.replace(",", "")
+                            if "m" in post_likes_count:
+                                post_likes_count = post_likes_count.replace("m", "")
+                                post_likes_count = int(float(post_likes_count) * 1000000)
+                            elif "k" in post_likes_count:
+                                post_likes_count = post_likes_count.replace("k", "")
+                                post_likes_count = int(float(post_likes_count) * 1000)
+                        elif "coreSpriteSpeechBubbleSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
+                            post_comments_count = second_item.text.replace(",", "")
+                            if "m" in post_comments_count:
+                                post_comments_count = post_comments_count.replace("m", "")
+                                post_comments_count = int(float(post_comments_count) * 1000000)
+                            elif "k" in post_comments_count:
+                                post_comments_count = post_comments_count.replace("k", "")
+                                post_comments_count = int(float(post_comments_count) * 1000)
+                        elif "coreSpritePlayIconSmall" in post.find_element_by_tag_name("a").find_element_by_xpath(f"//div[{skip_icon}]/ul/li[2]/span[2]").get_attribute("class"):
+                            post_views_count = second_item.text.replace(",", "")
+                            if "m" in post_views_count:
+                                post_views_count = post_views_count.replace("m", "")
+                                post_views_count = int(float(post_views_count) * 1000000)
+                            elif "k" in post_views_count:
+                                post_views_count = post_views_count.replace("k", "")
+                                post_views_count = int(float(post_views_count) * 1000)
 
                     if post_url not in posts_data.keys():
                         posts_data[post_url] = {
@@ -712,6 +721,7 @@ class InstaBot:
                     retry_scroll += 1
         except NoSuchElementException:
             pass
+
 
         return posts_data
 
