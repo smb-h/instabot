@@ -1,10 +1,25 @@
 https://pira.fidad.ir/
 
-inline parameters
-
-manage private users
-
 post comments verifyed bug
-check len likes
+
+update if data existed
+load data in initial and update in madules
+
+check post media url and type if it was multiple
+
+usernames
+########
+stinerisnes
+manon.lantie_
+ma_jid2670
+clip_shad_1
+me93525
+baran_nikrah
+t.e.x.t.gram
+
+
+python src.py --username baran_nikrah --posts --max-posts 20 --likes --max-likes 100 --comments --max-comments 100 --stories
+python src.py --tag طبیعت --posts --max-posts 1 --likes --max-likes 20 --comments --max-comments 12
+
 
 

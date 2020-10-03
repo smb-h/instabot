@@ -1,4 +1,4 @@
-2020-09-30 10:42:40,968 - library.proxy - INFO - initial connection manager...
-2020-09-30 10:42:47,009 - library.proxy - INFO - IP Address: 198.251.83.193 	 City: Belton 	 Region: Missouri 	 Country: US 	 Provider: AS53667 FranTech Solutions
-2020-09-30 10:42:47,030 - library.proxy - WARNING - Wait : 3.935022284551457
-2020-09-30 10:42:57,836 - library.proxy - INFO - IP Address: 162.247.74.217 	 City: Arvada 	 Region: Colorado 	 Country: US 	 Provider: AS4224 The Calyx Institute
+2020-09-30 16:12:00,685 - library.proxy - INFO - initial connection manager...
+2020-09-30 16:12:13,802 - library.proxy - INFO - IP Address: 62.210.37.82 	 City: Paris 	 Region: Île-de-France 	 Country: FR 	 Provider: AS12876 ONLINE S.A.S.
+2020-09-30 16:12:13,824 - library.proxy - WARNING - Wait : 3.7329159386583184
+2020-09-30 16:12:37,810 - library.proxy - INFO - IP Address: 51.81.83.162 	 City: Washington 	 Region: Washington, D.C. 	 Country: US 	 Provider: AS16276 OVH SAS

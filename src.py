@@ -1,32 +1,29 @@
 import time
 from library.instabot import InstaBot
+import sys
+import argparse
+
 
 # Main
 def main():
-    # time elapsed
-    start = time.time()
 
-    ###### user
-    # stinerisnes, manon.lantie_, ma_jid2670, clip_shad_1, me93525, baran_nikrah, t.e.x.t.gram
-    bot = InstaBot(target_username = "manon.lantie_")
-    # bot.authenticate()
-    # public_info = bot.get_user_public_info()
-    # posts_data = bot.get_posts()
-    # stories = bot.get_stories()
-    # stories_highlights = bot.get_stories_highlights()
-    # bot.store_data(user_public_info = public_info, stories = stories, stories_highlights = stories_highlights, posts_data = posts_data)
+    # Parser
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-V", "--version", help="show program version", action="store_true")
+    parser.add_argument("-P", "--posts", help="get posts", action="store_true")
+    parser.add_argument("-L", "--likes", help="get likes", action="store_true")
+    parser.add_argument("-C", "--comments", help="get comments", action="store_true")
+    parser.add_argument("-S", "--stories", help="get stories", action="store_true")
+    parser.add_argument("-T", "--tag", help="get posts by tag")
+    parser.add_argument("-U", "--username", help="target username")
+    parser.add_argument("--max-likes", help="maximum number of likes")
+    parser.add_argument("--max-comments", help="maximum number of comments")
+    parser.add_argument("--max-posts", help="maximum number of posts")
+    args = parser.parse_args()
 
-    ###### tag
-    # tag = "طبیعت"
-    # posts_by_tag_data = bot.get_posts_by_tag(tag, maximum = 10)
-    # bot.store_data(posts_by_tag_data = posts_by_tag_data, tag = tag)
-
-    # close driver
-    bot.close_driver()
-
-    # logger
-    # time elapsed
-    bot.logger.info('time elapsed : ' + str(time.time() - start))
+    
+    bot = InstaBot(target_username = args.username, posts_flag = args.posts, likes_flag = args.likes, comments_flag = args.comments, stories_flag = args.stories, target_tag = args.tag, max_likes = args.max_likes, max_comments = args.max_comments, max_posts = args.max_posts)
+    bot.crawl()
 
 
 

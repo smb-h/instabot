@@ -1,11 +1,46 @@
-2020-09-30 10:42:40,968 - library.instabot - INFO - initial browser...
-2020-09-30 10:43:01,508 - library.instabot - INFO - navigate to https://www.instagram.com
-2020-09-30 10:43:21,187 - library.instabot - INFO - login as smb__h
-2020-09-30 10:43:26,198 - library.instabot - WARNING - there is no save info alert!
-2020-09-30 10:43:26,213 - library.instabot - WARNING - there is no allow notification alert!
-2020-09-30 10:43:26,213 - library.instabot - INFO - get posts by tag #طبیعت
-2020-09-30 10:43:26,213 - library.instabot - INFO - navigate to https://www.instagram.com/explore/tags/طبیعت
-2020-09-30 10:43:36,717 - library.instabot - INFO - inject jquery
-2020-09-30 10:43:36,781 - library.instabot - INFO - gather post data 1/2
-2020-09-30 10:43:36,781 - library.instabot - INFO - navigate to https://www.instagram.com/p/CFutxjhA9_S/
-2020-09-30 10:43:46,491 - library.instabot - INFO - inject jquery
+2020-10-03 12:37:14,247 - library.instabot - INFO - initial browser...
+2020-10-03 12:37:17,110 - library.instabot - INFO - navigate to https://www.instagram.com
+2020-10-03 12:37:23,910 - library.instabot - INFO - inject jquery
+2020-10-03 12:37:30,156 - library.instabot - INFO - login as smb__h
+2020-10-03 12:37:43,374 - library.instabot - INFO - get posts by tag #طبیعت
+2020-10-03 12:37:43,374 - library.instabot - INFO - navigate to https://www.instagram.com/explore/tags/طبیعت
+2020-10-03 12:37:46,042 - library.instabot - INFO - inject jquery
+2020-10-03 12:37:53,572 - library.instabot - INFO - load 1/10 posts
+2020-10-03 12:37:54,963 - library.instabot - INFO - load 2/10 posts
+2020-10-03 12:37:56,375 - library.instabot - INFO - load 3/10 posts
+2020-10-03 12:37:57,829 - library.instabot - INFO - load 4/10 posts
+2020-10-03 12:37:59,277 - library.instabot - INFO - load 5/10 posts
+2020-10-03 12:38:00,698 - library.instabot - INFO - load 6/10 posts
+2020-10-03 12:38:02,121 - library.instabot - INFO - load 7/10 posts
+2020-10-03 12:38:03,530 - library.instabot - INFO - load 8/10 posts
+2020-10-03 12:38:04,966 - library.instabot - INFO - load 9/10 posts
+2020-10-03 12:38:06,319 - library.instabot - INFO - gather post data 1/9 - https://www.instagram.com/p/CF3qH4GAx80/
+2020-10-03 12:38:06,319 - library.instabot - INFO - navigate to https://www.instagram.com/p/CF3qH4GAx80/
+2020-10-03 12:38:12,094 - library.instabot - INFO - inject jquery
+2020-10-03 12:38:38,706 - library.instabot - INFO - gather post data 2/9 - https://www.instagram.com/p/CF2hgDdgZMQ/
+2020-10-03 12:38:38,706 - library.instabot - INFO - navigate to https://www.instagram.com/p/CF2hgDdgZMQ/
+2020-10-03 12:38:40,603 - library.instabot - INFO - inject jquery
+2020-10-03 12:39:07,101 - library.instabot - INFO - gather post data 3/9 - https://www.instagram.com/p/CF2mR7zA3w-/
+2020-10-03 12:39:07,101 - library.instabot - INFO - navigate to https://www.instagram.com/p/CF2mR7zA3w-/
+2020-10-03 12:39:09,118 - library.instabot - INFO - inject jquery
+2020-10-03 12:39:31,090 - library.instabot - INFO - gather post data 4/9 - https://www.instagram.com/p/CF3zZZCAl6z/
+2020-10-03 12:39:31,090 - library.instabot - INFO - navigate to https://www.instagram.com/p/CF3zZZCAl6z/
+2020-10-03 12:39:32,934 - library.instabot - INFO - inject jquery
+2020-10-03 12:39:50,554 - library.instabot - INFO - gather post data 5/9 - https://www.instagram.com/p/CF2ic9ihQim/
+2020-10-03 12:39:50,554 - library.instabot - INFO - navigate to https://www.instagram.com/p/CF2ic9ihQim/
+2020-10-03 12:39:56,128 - library.instabot - INFO - inject jquery
+2020-10-03 12:40:19,904 - library.instabot - INFO - gather post data 6/9 - https://www.instagram.com/p/CF32GF-Dwh5/
+2020-10-03 12:40:19,904 - library.instabot - INFO - navigate to https://www.instagram.com/p/CF32GF-Dwh5/
+2020-10-03 12:40:21,646 - library.instabot - INFO - inject jquery
+2020-10-03 12:40:40,538 - library.instabot - INFO - gather post data 7/9 - https://www.instagram.com/p/CF31NMvlY_6/
+2020-10-03 12:40:40,538 - library.instabot - INFO - navigate to https://www.instagram.com/p/CF31NMvlY_6/
+2020-10-03 12:40:42,570 - library.instabot - INFO - inject jquery
+2020-10-03 12:41:00,566 - library.instabot - INFO - gather post data 8/9 - https://www.instagram.com/p/CF3uqEHAcIk/
+2020-10-03 12:41:00,566 - library.instabot - INFO - navigate to https://www.instagram.com/p/CF3uqEHAcIk/
+2020-10-03 12:41:02,204 - library.instabot - INFO - inject jquery
+2020-10-03 12:41:20,064 - library.instabot - INFO - gather post data 9/9 - https://www.instagram.com/p/CF2jVqXsRyo/
+2020-10-03 12:41:20,064 - library.instabot - INFO - navigate to https://www.instagram.com/p/CF2jVqXsRyo/
+2020-10-03 12:41:23,314 - library.instabot - INFO - inject jquery
+2020-10-03 12:41:41,788 - library.instabot - INFO - store data...
+2020-10-03 12:41:41,790 - library.instabot - INFO - closing driver!
+2020-10-03 12:41:42,208 - library.instabot - INFO - time elapsed : 252.2932002544403
