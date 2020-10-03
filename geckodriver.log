@@ -1055,3 +1055,13 @@ console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Err
 1601716036973	Marionette	INFO	Listening on port 32787
 1601716037066	Marionette	WARN	TLS certificate errors will be ignored for this session
 1601716301792	Marionette	INFO	Stopped listening on port 32787
+1601718856593	geckodriver	INFO	Listening on 127.0.0.1:43407
+1601718857607	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiletyVEmg"
+*** You are running in headless mode.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1601718859412	Marionette	INFO	Listening on port 37193
+1601718859805	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: uncaught exception: undefined
+JavaScript error: resource://gre/actors/PictureInPictureChild.jsm, line 143: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/PictureInPictureChild.jsm, line 143: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/PictureInPictureChild.jsm, line 143: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable

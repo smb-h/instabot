@@ -1,3 +1,5 @@
 /data/
 secret.txt
+__pycache__
+
 
