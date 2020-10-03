@@ -14,11 +14,26 @@ InstaBot is a Python library for crawling Instagram using selenium
 ## Usage
 
 
-1. To crawl a username (posts, stories, comments, likes, ...) in `src.py` when we are creating instance of the bot set the target username 
+1. Params
     
-    
-    bot = InstaBot(target_username = "some_username")
-    
+    | Params        | Info          |
+    | ------------- | ------------- |
+    | `-V` Or `--version`  | Get version  |
+    |`--help`  | help  |
+    | `-P` Or `--posts`  | Get posts detail  |
+    | `-L` Or `--likes`  | Get likes info  |
+    | `-C` Or `--comments`  | Get comments detail  |
+    | `-S` Or `--stories`  | Get stories  |
+    | `-T` Or `--tag`  | Get posts by tag  |
+    | `-U` Or `--username`  | Target username  |
+    | `--max-likes`  | Number of maximum likes to crawl  |
+    | `--max-comments`  | Number of maximum comments to crawl  |
+    | `--max-posts`  | Number of maximum posts to crawl  |
+
+
+> ***Note*** `-U` Or `--username` parameter is required if u want to crawl a user.
+
+> ***Note*** `--max-posts` parameter is required if u want to crawl by tag.
 
 > ***Note*** that target user must be public or if it's private it must followed by ur authenticated user.
 
@@ -36,7 +51,12 @@ InstaBot is a Python library for crawling Instagram using selenium
 
 4. Log will store in the current directory as `instagram.log`
 
-5. Use `src.py` as sample to create ur own script based on ur needs.
+5. Sample commands:
+    ```
+   $ python src.py --username emmawatson --posts --max-posts 20 --likes --max-likes 100 --comments --max-comments 100 --stories
+   $ python src.py --tag nature --posts --max-posts 40 --likes --max-likes 100 --comments --max-comments 100
+   
+    ```
 
 
 ## Contributing
