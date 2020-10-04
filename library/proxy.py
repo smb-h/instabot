@@ -52,7 +52,7 @@ class ConnectionManager:
         while True:
             with Controller.from_port(port = 9051) as c:
                 # c.authenticate(password="password")
-                c.authenticate(password="SomeThingDunnoxD")
+                c.authenticate(password = "SomeThingDunnoxD")
                 c.signal(Signal.NEWNYM)
 
             wait = random.uniform(0, 5)

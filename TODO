@@ -18,8 +18,6 @@ baran_nikrah
 t.e.x.t.gram
 
 
-python src.py --username baran_nikrah --posts --max-posts 20 --likes --max-likes 100 --comments --max-comments 100 --stories
-python src.py --tag nature --posts --max-posts 20 --likes --max-likes 100 --comments --max-comments 100
-
-
+python src.py --username baran_nikrah --posts --max-posts 20 --likes --max-likes 100 --comments --max-comments 100 --stories --tor-proxy
+python src.py --tag nature --posts --max-posts 20 --likes --max-likes 100 --comments --max-comments 100 --tor-proxy
 

@@ -17,7 +17,7 @@ from .proxy import ConnectionManager
 # InstaBot
 class InstaBot:
     # initial
-    def __init__(self, target_username = None, posts_flag = True, likes_flag = False, comments_flag = False, stories_flag = False, target_tag = None, max_likes = None, max_comments = None, max_posts = None):
+    def __init__(self, target_username = None, posts_flag = True, likes_flag = False, comments_flag = False, stories_flag = False, target_tag = None, max_likes = None, max_comments = None, max_posts = None, tor_proxy = False):
         # logger
         self.logger = InstaBot.get_logger(level = logging.DEBUG, dest = "", verbose = 0)
 
@@ -27,24 +27,37 @@ class InstaBot:
         assert opts.headless
         self.logger.info("initial browser...")
         # proxy config
-        # cm = ConnectionManager()
-        # cm.renew_connection()
-        # profile = webdriver.FirefoxProfile()
-        # profile.set_preference("network.proxy.type", 1)
-        # profile.set_preference("network.proxy.socks", '127.0.0.1')
-        # profile.set_preference("network.proxy.socks_port", 9050)
-        # profile.set_preference("network.proxy.socks_remote_dns", False)
-        # profile.update_preferences()
+        if tor_proxy:
+            cm = ConnectionManager()
+            cm.renew_connection()
+            profile = webdriver.FirefoxProfile()
+            profile.set_preference("network.proxy.type", 1)
+            profile.set_preference("network.proxy.socks", '127.0.0.1')
+            profile.set_preference("network.proxy.socks_port", 9050)
+            profile.set_preference("network.proxy.socks_remote_dns", False)
+            profile.update_preferences()
+
+            self.driver = webdriver.Firefox(firefox_profile = profile, options = opts)
+            # self.driver = webdriver.Firefox(firefox_profile = profile)
+
+            # self.navigate_webdriver("http://api.ipify.org")
+            # time.sleep(100000)
+
+        else :
+            # self.driver = webdriver.Firefox()
+            self.driver = webdriver.Firefox(options = opts)
+            
 
         # proxy
         # self.driver = webdriver.Firefox(firefox_profile = profile)
         # headless
-        self.driver = webdriver.Firefox(options = opts)
+        # self.driver = webdriver.Firefox(options = opts)
         # normal
         # self.driver = webdriver.Firefox()
         # full options
         # self.driver = webdriver.Firefox(firefox_profile = profile, options = opts)
         self.navigate_webdriver("https://www.instagram.com")
+
 
         # read username, password from file
         with open("static/secret.txt", "r") as file:
