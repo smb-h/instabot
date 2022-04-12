@@ -40,7 +40,7 @@ class InstaBot:
     # navigate webdriver
     def navigate_webdriver(self, path):
         driver = self.driver
-        self.logger.info("navigate to " + path)
+        self.logger.info(f"navigate to {path}")
         driver.get(path)
         time.sleep(5)
 
@@ -67,7 +67,7 @@ class InstaBot:
 
         password_field.send_keys(Keys.RETURN)
 
-        self.logger.info("login as " + self.username)
+        self.logger.info(f"login as {self.username}")
 
         time.sleep(5)
 
@@ -141,10 +141,7 @@ class InstaBot:
     # get user followers
     def get_user_followers(self):
         self.logger.info("gather user followers")
-        followers_count = self.followers_count
-        # list of followers
-        if followers_count:
-            user_followers = []
+        if followers_count := self.followers_count:
             driver.find_element_by_tag_name("main").find_element_by_xpath("//header/section/ul/li[2]/a").click()
             time.sleep(1)
             followers_section = driver.find_element_by_tag_name("body").find_elements_by_xpath("//div[4]/div/div/div[2]/ul/div/li")
@@ -153,19 +150,18 @@ class InstaBot:
                 driver.execute_script("$('.isgrP').animate({ scrollTop: $('.isgrP').prop('scrollHeight')}, 100);")
                 followers_section = driver.find_element_by_tag_name("body").find_elements_by_xpath("//div[4]/div/div/div[2]/ul/div/li")
                 time.sleep(2)
-            for e in followers_section:
-                user_followers.append({
+            return [
+                {
                     "username": e.text.split()[0],
                     "subtitle": e.text.split()[1],
-                })
-            return(user_followers)
+                }
+                for e in followers_section
+            ]
 
     # get user followings
     def get_user_followings(self):
         self.logger.info("gather user followings")
-        following_count = self.following_count
-        # list of following
-        if following_count:
+        if following_count := self.following_count:
             user_followings = []
             driver.find_element_by_tag_name("main").find_element_by_xpath("//header/section/ul/li[3]/a").click()
             time.sleep(1)
@@ -287,14 +283,13 @@ class InstaBot:
                     time.sleep(2)
                 except NoSuchElementException:
                     # print("There is no other media!")
-                    break  
-        else:
-            if is_video:
-                tmp = post_media_type.find_element_by_tag_name("video").get_attribute('poster').replace("amp;", "")
-                post_media.append(tmp)
-            elif is_picture:
-                tmp = post_media_type.find_element_by_tag_name("img").get_attribute('src').replace("amp;", "")
-                post_media.append(tmp)
+                    break
+        elif is_video:
+            tmp = post_media_type.find_element_by_tag_name("video").get_attribute('poster').replace("amp;", "")
+            post_media.append(tmp)
+        elif is_picture:
+            tmp = post_media_type.find_element_by_tag_name("img").get_attribute('src').replace("amp;", "")
+            post_media.append(tmp)
 
         # post content
         try:
@@ -356,7 +351,7 @@ class InstaBot:
                         break
             except NoSuchElementException:
                 pass
-        
+
         return({
             "url": url,
             "post_media": post_media,
@@ -417,7 +412,7 @@ class InstaBot:
     def get_posts_by_tag(self, tag, maximum):
         self.logger.info(f"get posts by tag #{tag}")
         driver = self.driver
-        self.navigate_webdriver("https://www.instagram.com/explore/tags/" + tag)
+        self.navigate_webdriver(f"https://www.instagram.com/explore/tags/{tag}")
         self.inject_jquery()
 
         # get post urls
@@ -509,10 +504,10 @@ class InstaBot:
         if not os.path.exists('data'):
             os.makedirs('data')
         if tag:
-            with open('data/{}.json'.format(tag), 'w', encoding='utf8') as outfile:
+            with open(f'data/{tag}.json', 'w', encoding='utf8') as outfile:
                 json.dump(json_data, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
-        else :
-            with open('data/{}.json'.format(self.target_username), 'w', encoding='utf8') as outfile:
+        else:
+            with open(f'data/{self.target_username}.json', 'w', encoding='utf8') as outfile:
                 json.dump(json_data, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
 
     # logger
@@ -522,7 +517,7 @@ class InstaBot:
         logger = logging.getLogger(__name__)
 
         dest +=  '/' if (dest !=  '') and dest[-1] != '/' else ''
-        fh = logging.FileHandler(dest + 'instagram.log', 'w')
+        fh = logging.FileHandler(f'{dest}instagram.log', 'w')
         fh.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
         fh.setLevel(level)
         logger.addHandler(fh)

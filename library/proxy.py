@@ -56,7 +56,7 @@ class ConnectionManager:
                 c.signal(Signal.NEWNYM)
 
             wait = random.uniform(0, 5)
-            self.logger.warning("Wait : " + str(wait))
+            self.logger.warning(f"Wait : {str(wait)}")
             time.sleep(wait)
 
             new_ip = self.get_request(url = 'https://api.ipify.org').text
@@ -72,7 +72,7 @@ class ConnectionManager:
         logger = logging.getLogger(__name__)
 
         dest +=  '/' if (dest !=  '') and dest[-1] != '/' else ''
-        fh = logging.FileHandler(dest + 'proxy.log', 'w')
+        fh = logging.FileHandler(f'{dest}proxy.log', 'w')
         fh.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
         fh.setLevel(level)
         logger.addHandler(fh)

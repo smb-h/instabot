@@ -78,7 +78,7 @@ class InstaBot:
     # navigate webdriver
     def navigate_webdriver(self, path):
         driver = self.driver
-        self.logger.info("navigate to " + path)
+        self.logger.info(f"navigate to {path}")
         driver.get(path)
         self.inject_jquery()
         time.sleep(6)
@@ -107,7 +107,7 @@ class InstaBot:
 
         password_field.send_keys(Keys.RETURN)
 
-        self.logger.info("login as " + self.username)
+        self.logger.info(f"login as {self.username}")
 
         time.sleep(5)
 
@@ -180,10 +180,7 @@ class InstaBot:
     # get user followers
     def get_user_followers(self):
         self.logger.info("gather user followers")
-        followers_count = self.followers_count
-        # list of followers
-        if followers_count:
-            user_followers = []
+        if followers_count := self.followers_count:
             driver.find_element_by_tag_name("main").find_element_by_xpath("//header/section/ul/li[2]/a").click()
             time.sleep(1)
             followers_section = driver.find_element_by_tag_name("body").find_elements_by_xpath("//div[4]/div/div/div[2]/ul/div/li")
@@ -192,19 +189,18 @@ class InstaBot:
                 driver.execute_script("$('.isgrP').animate({ scrollTop: $('.isgrP').prop('scrollHeight')}, 100);")
                 followers_section = driver.find_element_by_tag_name("body").find_elements_by_xpath("//div[4]/div/div/div[2]/ul/div/li")
                 time.sleep(2)
-            for e in followers_section:
-                user_followers.append({
+            return [
+                {
                     "username": e.text.split()[0],
                     "subtitle": e.text.split()[1],
-                })
-            return(user_followers)
+                }
+                for e in followers_section
+            ]
 
     # get user followings
     def get_user_followings(self):
         self.logger.info("gather user followings")
-        following_count = self.following_count
-        # list of following
-        if following_count:
+        if following_count := self.following_count:
             user_followings = []
             driver.find_element_by_tag_name("main").find_element_by_xpath("//header/section/ul/li[3]/a").click()
             time.sleep(1)
@@ -242,16 +238,15 @@ class InstaBot:
                 # extract
                 posts = driver.find_elements_by_css_selector(".v1Nh3.kIKUG")
                 for post in posts:
-                    post_url = post.find_element_by_tag_name("a").get_attribute("href") 
+                    post_url = post.find_element_by_tag_name("a").get_attribute("href")
                     post_media = post.find_element_by_tag_name("a").find_element_by_tag_name("img").get_attribute("src")
                     post_views_count = 0
                     post_comments_count = 0
                     post_likes_count = 0
 
                     # break when it reaches maximum depth
-                    if self.max_posts:
-                        if len(posts_data) >= self.max_posts:
-                            break
+                    if self.max_posts and len(posts_data) >= self.max_posts:
+                        break
 
                     # hover element
                     if post_url not in posts_data.keys():
@@ -349,9 +344,8 @@ class InstaBot:
                     self.logger.info("load {0}/{1} posts".format(len(posts_data), self.max_posts))
 
                 # break when it reaches maximum depth
-                if self.max_posts:
-                    if (len(posts_data) >= self.max_posts):
-                        break
+                if self.max_posts and (len(posts_data) >= self.max_posts):
+                    break
 
                 # scroll
                 # driver.execute_script("$('html, body').animate({ scrollTop: $('html, body').prop('scrollHeight')}, 350);")
@@ -411,7 +405,7 @@ class InstaBot:
             pass
 
         post_media = []
-        # if multiple 
+        # if multiple
         if is_multiple:
             while True:
                 try:
@@ -435,14 +429,13 @@ class InstaBot:
                     time.sleep(2)
                 except NoSuchElementException:
                     # print("There is no other media!")
-                    break  
-        else:
-            if is_video:
-                tmp = post_media_type.find_element_by_tag_name("video").get_attribute('poster').replace("amp;", "")
-                post_media.append(tmp)
-            elif is_picture:
-                tmp = post_media_type.find_element_by_tag_name("img").get_attribute('src').replace("amp;", "")
-                post_media.append(tmp)
+                    break
+        elif is_video:
+            tmp = post_media_type.find_element_by_tag_name("video").get_attribute('poster').replace("amp;", "")
+            post_media.append(tmp)
+        elif is_picture:
+            tmp = post_media_type.find_element_by_tag_name("img").get_attribute('src').replace("amp;", "")
+            post_media.append(tmp)
 
         # post content
         try:
@@ -506,13 +499,11 @@ class InstaBot:
                             if tmp not in likes:
                                 likes.append(tmp)
                             # break on max depth
-                            if self.max_likes:
-                                if len(likes) >= self.max_likes:
-                                    break
-                        # break on max depth
-                        if self.max_likes:
-                            if len(likes) >= self.max_likes:
+                            if self.max_likes and len(likes) >= self.max_likes:
                                 break
+                        # break on max depth
+                        if self.max_likes and len(likes) >= self.max_likes:
+                            break
                         # scroll
                         driver.execute_script("$('.Igw0E.IwRSH.eGOV_.vwCYk.i0EQd div').animate({ scrollTop: $('.Igw0E.IwRSH.eGOV_.vwCYk.i0EQd div').prop('scrollHeight')}, 100);")
                         time.sleep(3)
@@ -526,7 +517,7 @@ class InstaBot:
                             break
                 except NoSuchElementException:
                     pass
-        
+
         return({
             "url": url,
             "media": post_media,
@@ -607,16 +598,15 @@ class InstaBot:
                 # extract
                 posts = driver.find_elements_by_css_selector(".v1Nh3.kIKUG")
                 for post in posts:
-                    post_url = post.find_element_by_tag_name("a").get_attribute("href") 
+                    post_url = post.find_element_by_tag_name("a").get_attribute("href")
                     post_media = post.find_element_by_tag_name("a").find_element_by_tag_name("img").get_attribute("src")
                     post_views_count = 0
                     post_comments_count = 0
                     post_likes_count = 0
 
                     # break when it reaches maximum depth
-                    if self.max_posts:
-                        if len(posts_data) >= self.max_posts:
-                            break
+                    if self.max_posts and len(posts_data) >= self.max_posts:
+                        break
 
                     # hover element
                     if post_url not in posts_data.keys():
@@ -714,9 +704,8 @@ class InstaBot:
                     self.logger.info("load {0}/{1} posts".format(len(posts_data), self.max_posts))
 
                 # break when it reaches maximum depth
-                if self.max_posts:
-                    if (len(posts_data) >= self.max_posts):
-                        break
+                if self.max_posts and (len(posts_data) >= self.max_posts):
+                    break
 
                 # scroll
                 # driver.execute_script("$('html, body').animate({ scrollTop: $('html, body').prop('scrollHeight')}, 350);")
@@ -829,10 +818,10 @@ class InstaBot:
         if not os.path.exists('data'):
             os.makedirs('data')
         if self.target_tag:
-            with open('data/{}.json'.format(self.target_tag), 'w', encoding='utf8') as outfile:
+            with open(f'data/{self.target_tag}.json', 'w', encoding='utf8') as outfile:
                 json.dump(json_data, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
-        else :
-            with open('data/{}.json'.format(self.target_username), 'w', encoding='utf8') as outfile:
+        else:
+            with open(f'data/{self.target_username}.json', 'w', encoding='utf8') as outfile:
                 json.dump(json_data, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
 
     # logger
@@ -842,7 +831,7 @@ class InstaBot:
         logger = logging.getLogger(__name__)
 
         dest +=  '/' if (dest !=  '') and dest[-1] != '/' else ''
-        fh = logging.FileHandler(dest + 'instagram.log', 'w')
+        fh = logging.FileHandler(f'{dest}instagram.log', 'w')
         fh.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
         fh.setLevel(level)
         logger.addHandler(fh)
@@ -866,23 +855,19 @@ class InstaBot:
         if self.username and self.password:
             self.authenticate()
 
-        # get target username public info
-        public_info = None
-        if self.target_username:
-            public_info = self.get_user_public_info()
-
+        public_info = self.get_user_public_info() if self.target_username else None
         # get posts data
         posts_data = None
         if (self.posts_flag or self.max_posts) and self.target_username:
             posts_data = self.get_posts()
-        
+
         # get stories data
         stories_data = None
         stories_highlights = None
         if self.stories_flag:
             stories_data = self.get_stories()
             stories_highlights = self.get_stories_highlights()
-        
+
         # get posts by tag
         if self.target_tag and self.max_posts:
             posts_data = self.get_posts_by_tag()
@@ -912,7 +897,7 @@ class InstaBot:
 
         # logger
         # time elapsed
-        self.logger.info('time elapsed : ' + str(time.time() - start))
+        self.logger.info(f'time elapsed : {str(time.time() - start)}')
 
 
 
